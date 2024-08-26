@@ -38,3 +38,9 @@ jobs:
       - name: Install dependencies
         shell: bash
         run: pnpm i
+
+      - name: Create Pull Request
+        shell: bash
+        run: pnpm sync-react --actor "${{ github.actor }}" --version "${{ inputs.version }}" --create-pull
+        env:
+          GITHUB_TOKEN: ${{ secrets.RELEASE_BOT_GITHUB_TOKEN }}
